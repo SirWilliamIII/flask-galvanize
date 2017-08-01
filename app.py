@@ -28,13 +28,13 @@ def resource(song_id):
 		pass  # Handle DELETE request
 
 
-# helper functions
-
 def add_song(artist, title, rating):
 	try:
 		with sqlite3.connect('songs.db') as connection:
 			cursor = connection.cursor()
-			cursor.execute("""INSERT INTO songs (artist, title, rating) values (?, ?, ?);""", (artist, title, rating,))
+			cursor.execute("""
+                INSERT INTO songs (artist, title, rating) VALUES (?, ?, ?);
+                """, (artist, title, rating,))
 			result = {'status': 1, 'message': 'Song Added'}
 	except:
 		result = {'status': 0, 'message': 'error'}
